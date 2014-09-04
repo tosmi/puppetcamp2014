@@ -4,7 +4,6 @@
 %%% End:
 \documentclass{beamer}
 \usepackage[utf8]{inputenc}
-\usepackage[german]{babel}
 \usepackage{graphics}
 \usepackage{listings}
 \usepackage{caption}
@@ -35,21 +34,20 @@ frame=single,
 captionpos=b
 }
 
-\title{System Automation mit Puppet und Foreman\\}
+\title{Continuously deliver your puppet code with jenkins, r10k and git\\}
 \author{Toni Schmidbauer}
 
 \begin{document}
 
 \begin{frame}
-\center\includegraphics[height=2.5cm,width=2cm]{../pics/puppet.png}
-\titlepage
-
+  \center\includegraphics[height=2.5cm,width=2cm]{../pics/puppet.png}
+  \titlepage
 \end{frame}
 
 \begin{frame}
   \frametitle{whoami}
   \begin{itemize}
-  \item SysAdmin@s-itsolutions
+  \item SysAdmin@s-itsolutions.at
   \item toni@stderr.at
   \item \url{http://stderr.at}
   \item \url{http://github.com/tosmi}
@@ -61,65 +59,65 @@ captionpos=b
   \frametitle{Agenda}
 
   \begin{itemize}
-  \item Kurze Umfrage
-  \item Was ist Puppet?
-  \item Was ist Foreman?
-  \item Puppet@s-iTSolutions
-  \item Was haben wir geplant?
+  \item A short story about configuration managment
+  \item What is continous delivery
+  \item How do we develop our Puppet code
+  \item And what about deploying the code?
+  \item Jenkins, GIT and r10k!
+  \item Where do we go from here
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}
-\center{\huge{Umfrage}}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{Was ist Puppet?}
+  \frametitle{A short story about configuration management (CM)}
 
   \begin{itemize}
-  \item Declarative programming: telling the machine what you would
-    like to happen, and let the computer figure out how to do it.
-  \item \tiny{Imperative programming: telling the machine how to do
-    something}
+  \item<1-> We manage a very diverse environment of UNIX/Linux Systems (Solaris 10/11, AIX, RHEL 5/6/7)
+  \item<2-> Before CM we had \textbf{strict} standards on how to manage these systems
+  \item<3-> The problem: \\count(teammembers) == count(standards)
+  \item<4-> So configuration management is the solution to all our problems
   \end{itemize}
 
-  \begin{lstlisting}
-    class linuxwochen2014 (
-      $ensure = present
-    ) {
-      user { 'toni':
-        ensure => $ensure,
-        uid    => 4711,
-        gid    => 100,
-      }
-
-      package { 'emacs-nox':
-        ensure => installed
-      } ->
-      package { 'vim-enhanced':
-        ensure => absent,
-      }
-    }
-  \end{lstlisting}
 \end{frame}
 
+\begin{frame}
+  \frametitle{The solution to all our problems}
+  \pause
+  \begin{itemize}
+  \item Broke our systems
+  \end{itemize}
+\end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Zuordnung von Klassen}
+\begin{frame}
+  \center{\huge{WHY????}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Problems with our old CM system}
 
   \begin{itemize}
-    \item über manifests/site.pp
-      \begin{lstlisting}
-        node /^(foo|bar)\.linuxwochen\.at$/ {
-          class { 'linuxwochen2014':
-            ensure => absent
-          }
-        }
-      \end{lstlisting}
-  \item über einen External Node Classifier (Foreman)
-  \item über Hiera (hiera\_include('classes',[````]))
+  \item CFEngine 2 based, no unit tests
+  \item Deployment in stages, but we always had to cross our fingers
+  \item Deployment via manual tagging and checkout, so mistakes happened
+  \item We fixed the same mistakes more than once
+  \item Systems installed without CM are hard to bring under CM control
+  \item In the beginning every problem was a CM problem
   \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \center{\huge{So whats our solution?}}
+
+  or: why should i care?
+\end{frame}
+
+\begin{frame}
+  \begin{figure}[ht]
+    \centering
+      \includegraphics[height=7.5cm,width=6cm]{../pics/cd_book}
+    \label{fig:stack}
+  \end{figure}
 \end{frame}
 
 
@@ -143,18 +141,7 @@ captionpos=b
   \end{figure}
 \end{frame}
 
-\begin{frame}
-  \center{\huge{Und jetzt?}}
-\end{frame}
-
-\begin{frame}
-  \begin{figure}[ht]
-    \centering
-      \includegraphics[height=7.5cm,width=10cm]{../pics/chucky.png}
-    \label{fig:stack}
-  \end{figure}
-\end{frame}
-
+\end{document}
 
 \begin{frame}
   \begin{itemize}

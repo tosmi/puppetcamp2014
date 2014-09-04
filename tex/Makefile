@@ -1,6 +1,5 @@
 # #########################
-# FILE = puppetcamp2014
-2014.tex
+FILE = puppetcamp2014.tex
 #########################
 
 .SUFFIXES:      .tex .dvi .ps .eps .pdf
@@ -20,16 +19,16 @@ all: $(PDFFILES)
 
 .PHONY: pdf
 pdf: nomencl
-        pdflatex $(FILE).tex
+	pdflatex $(FILE).tex
 
 .PHONY: cleanpdf
 cleanpdf:
-        rm $(PDFFILES)
+	rm $(PDFFILES)
 
 .PHONY: nomencl
 nomencl:
-        makeindex $(FILE).nlo -s nomencl.ist -o $(FILE).nls
+	makeindex $(FILE).nlo -s nomencl.ist -o $(FILE).nls
 
 .PHONY: clean
 clean:
-        rm -rf *~ *.*~ *.log *.aux *.dvi *.idx *.toc *.ps *.out
+	rm -rf *~ *.*~ *.log *.aux *.dvi *.idx *.toc *.ps *.out
