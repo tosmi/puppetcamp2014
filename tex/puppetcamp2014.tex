@@ -97,12 +97,13 @@ captionpos=b
   \frametitle{Problems with our old CM system}
 
   \begin{itemize}
+  \item Systems installed without CM are hard to bring under CM control
+  \item Every system is a special case
+  \item In the beginning every problem was a CM problem
   \item CFEngine 2 based, no unit tests
   \item Deployment in stages, but we always had to cross our fingers
   \item Deployment via manual tagging and checkout, so mistakes happened
   \item We fixed the same mistakes more than once
-  \item Systems installed without CM are hard to bring under CM control
-  \item In the beginning every problem was a CM problem
   \end{itemize}
 \end{frame}
 
@@ -118,6 +119,26 @@ captionpos=b
       \includegraphics[height=7.5cm,width=6cm]{../pics/cd_book}
     \label{fig:stack}
   \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Continuous delivery}
+  \begin{itemize}
+  \item<1-> is a pattern for getting software from development to release
+  \item<2-> this pattern is called \textbf{the deployment pipeline}
+  \end{itemize}
+  \footnote{Continuous Delivery: Jez Humble, David Farley}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The deployment pipeline}
+  \begin{figure}[ht]
+    \centering
+      \includegraphics[height=1cm,width=10cm]{../pics/deployment_pipline}
+    \label{fig:stack}
+  \end{figure}
+  \pause but the automated acceptance are currently missing in our
+  setup, we will fix this with beaker (thanks puppetlabs)
 \end{frame}
 
 
