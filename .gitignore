@@ -89,3 +89,4 @@ sympy-plots-for-*.tex/
 *.xdy
 /tex/auto/
 /pics/deployment_pipline.fig.bak
+/.vagrant/

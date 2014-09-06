@@ -1,0 +1,12 @@
+[submodule "vagrant/puppet/modules/jenkins"]
+	path = vagrant/puppet/modules/jenkins
+	url = https://github.com/jenkinsci/puppet-jenkins.git
+[submodule "vagrant/puppet/modules/stdlib"]
+	path = vagrant/puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "vagrant/puppet/modules/java"]
+	path = vagrant/puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java
+[submodule "vagrant/puppet/modules/epel"]
+	path = vagrant/puppet/modules/epel
+	url = https://github.com/stahnma/puppet-module-epel.git
