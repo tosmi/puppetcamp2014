@@ -60,11 +60,9 @@ captionpos=b
 
   \begin{itemize}
   \item A short story about configuration managment
-  \item What is continous delivery
-  \item How do we develop our Puppet code
-  \item And what about deploying the code?
-  \item Jenkins, GIT and r10k!
-  \item Where do we go from here
+  \item What is continuous delivery
+  \item Tools used to achieve continuous delivery
+  \item DEMO
   \end{itemize}
 
 \end{frame}
@@ -103,7 +101,7 @@ captionpos=b
   \item CFEngine 2 based, no unit tests
   \item Deployment in stages, but we always had to cross our fingers
   \item Deployment via manual tagging and checkout, so mistakes happened
-  \item We fixed the same mistakes more than once
+  \item We fixed the same mistake more than once
   \end{itemize}
 \end{frame}
 
@@ -134,12 +132,18 @@ captionpos=b
   \frametitle{The deployment pipeline}
   \begin{figure}[ht]
     \centering
-      \includegraphics[height=1cm,width=10cm]{../pics/deployment_pipline}
+      \includegraphics[height=1.2cm,width=11.5cm]{../pics/deployment_pipline}
     \label{fig:stack}
   \end{figure}
   \pause \tiny but the automated acceptance tests are currently missing in our
   setup, we will fix this with beaker (thanks puppetlabs)
 \end{frame}
+
+\section{Tools to build a deployment pipeline}
+\begin{frame}
+  \center \huge Tools to build a deployment pipeline
+\end{frame}
+
 
 \begin{frame}
   \frametitle{Jenkins}
@@ -242,6 +246,18 @@ end
 \end{frame}
 
 \begin{frame}
+  \frametitle{GIT repository layout}
+
+  \begin{itemize}
+  \item modules/: where r10k stores external (forge, github) modules
+  \item site/: site local modules, that we do not want to share
+  \item hiera/: our hiera yaml files
+  \item Puppetfile: config file for r10k that specifies which modules we need
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
   \frametitle{GIT workflow}
   \begin{figure}
     \centering
@@ -263,16 +279,6 @@ end
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{GIT repository layout for r10k}
-
-  \begin{itemize}
-  \item modules/: where r10k stores external (forge, github) modules
-  \item site/: site local modules, that we do not want to share
-  \item hiera/: our hiera yaml files
-  \item Puppetfile: config file for r10k that specifies which modules we need
-  \end{itemize}
-\end{frame}
 
 \begin{frame}
   \center{\huge DEMO}
