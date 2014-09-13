@@ -1,0 +1,4 @@
+* TODO mention jenkins plugins used
+* TODO test vagrant config
+* TODO upload vagrant vm
+* TODO practice demo
