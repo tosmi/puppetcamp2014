@@ -2,3 +2,4 @@
 * TODO test vagrant config
 * TODO upload vagrant vm
 * TODO practice demo
+* TODO verify build pipeline
