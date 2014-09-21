@@ -3,3 +3,4 @@
 * TODO upload vagrant vm
 * TODO practice demo
 * TODO verify build pipeline
+* TODO mention gitolite
