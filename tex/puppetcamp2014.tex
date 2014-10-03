@@ -143,8 +143,6 @@ captionpos=b
       \includegraphics[height=1.2cm,width=11.5cm]{../pics/deployment_pipline}
     \label{fig:stack}
   \end{figure}
-  \pause \tiny but the automated acceptance tests are currently missing in our
-  setup, we will fix this with beaker (thanks puppetlabs)
 \end{frame}
 
 \section{Tools to build a deployment pipeline}
@@ -235,6 +233,19 @@ captionpos=b
   \item in the current version (1.3.2) dependencies have to be managed
     manually
   \end{itemize}
+\end{frame}
+
+  \begin{frame}[fragile]
+    \frametitle{Example Puppetfile}
+\begin{lstlisting}
+mod 'puppetlabs/apache'
+
+mod 'apache',
+  :git => 'https://github.com/puppetlabs/puppetlabs-apache',
+  :tag => '0.9.0'
+\end{lstlisting}
+
+    You can are able to pin to a git tag/branch/commit hash
 
 \end{frame}
 
@@ -289,6 +300,17 @@ end
 
 \begin{frame}
   \center{\huge DEMO}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Things to improve}
+
+  \begin{itemize}
+  \item We need more test Systems (Centos/RHEL/Solaris)
+  \item We need more acceptance tests
+  \item Puppetlabs should package beaker as a rpm/deb whatever, gems
+    suck in production
+  \end{itemize}
 \end{frame}
 
 \begin{frame}
