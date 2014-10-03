@@ -180,7 +180,7 @@ captionpos=b
   \frametitle{Monitoring with Jenkins}
   \begin{figure}[ht]
     \centering
-      \includegraphics[height=6cm,width=11cm]{../pics/jenkins_monitor}
+      \includegraphics[height=6cm,width=11cm]{../pics/jenkins_monitor_live}
     \label{fig:stack}
   \end{figure}
 \end{frame}
@@ -238,11 +238,21 @@ captionpos=b
   \begin{frame}[fragile]
     \frametitle{Example Puppetfile}
 \begin{lstlisting}
-mod 'puppetlabs/apache'
+forge 'forge.puppetlabs.com'
 
-mod 'apache',
-  :git => 'https://github.com/puppetlabs/puppetlabs-apache',
-  :tag => '0.9.0'
+mod 'puppetlabs/ntp', '3.1.2'
+mod 'puppetlabs/postgresql', '3.4.2'
+mod 'puppetlabs/stdlib', '4.3.2'
+mod 'puppetlabs/firewall', '1.1.3'
+mod 'puppetlabs/apache', '1.1.1'
+mod 'puppetlabs/lvm', '0.3.2'
+mod 'nosolutions/tsm', '0.2.2'
+mod 'saz/sudo', '3.0.6'
+mod 'spiette/selinux', '0.5.4'
+
+mod 'concat',
+    :git => 'https://github.com/puppetlabs/puppetlabs-concat',
+    :commit => 'feba3096c99502219043b8161bde299ba65e7b8a'
 \end{lstlisting}
 
     You can are able to pin to a git tag/branch/commit hash
@@ -266,32 +276,27 @@ mod 'apache',
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}[fragile,fragile]
   \frametitle{rspec-puppet}
 
-  \begin{itemize}
-  \item Ruby RSpec (unit tests) for puppet
-  \end{itemize}
+  puppet code
+
+\begin{lstlisting}
+class samplemodule ( $message = 'defaultmessage' ) {
+  notify { 'samplemessage':
+    message => "This is the sample module, my message is: $message",
+  }
+}
+\end{lstlisting}
+
+  rspec test
 
   \begin{lstlisting}
 require 'spec_helper'
-describe 'linuxwochen2014' do
-  let :facts { { :osfamily => 'RedHat' } }
 
-  context 'ensure is set to absent' do
-    let :params { { :ensure => 'absent'} }
-
-    it do
-      should contain_user('toni').with({
-                                         'ensure' => 'absent',
-                                         'uid'    => '4711',
-                                         'gid'    => '100',
-                                      })
-    end
-
-    it { should contain_package('emacs-nox').with_ensure('installed') }
-    it { should contain_package('vim-enhanced').with_ensure('absent') }
-    it { should contain_package('emacs-nox).that_comes_before('Package[vim-enhanced]') }
+describe 'samplemodule', :type => :class do
+  context 'with default parameters' do
+    it { should contain_notify('samplemessage') }
   end
 end
   \end{lstlisting}
