@@ -658,6 +658,6 @@ Single
 4 0 0 50 -1 0 12 0.0000 4 180 2880 2430 7290 It's all the same for Hiera yaml files!\001
 4 0 0 50 -1 0 12 0.0000 4 180 1095 4275 1890 Development\001
 4 0 0 50 -1 0 12 0.0000 4 135 585 4275 2115 Branch\001
-4 0 0 50 -1 0 12 0.0000 4 180 4350 2790 6030 a normal commit to the Testing branch only runs tests\001
-4 0 0 50 -1 0 12 0.0000 4 180 4635 2790 6660 a normal commit to the Prodcution branch only runs tests\001
+4 0 0 50 -1 0 12 0.0000 4 180 3285 2790 6030 pushing to testing triggers a deployment\001
+4 0 0 50 -1 0 12 0.0000 4 180 3630 2790 6660 pushing to production triggers a deployment\001
 4 0 0 50 -1 0 12 0.0000 4 180 3675 2790 6435 Production Branch gets deployed via GIT tag\001

@@ -49,9 +49,9 @@ captionpos=b
   \begin{itemize}
   \item SysAdmin@s-itsolutions.at
   \item toni@stderr.at
+  \item stderr@jabber.org
   \item \url{http://stderr.at}
   \item \url{http://github.com/tosmi}
-  \item stderr@jabber.org
   \end{itemize}
 \end{frame}
 \begin{frame}
@@ -63,6 +63,7 @@ captionpos=b
   \item What is continuous delivery
   \item Tools used to achieve continuous delivery
   \item DEMO
+  \item Things to improve
   \end{itemize}
 
 \end{frame}
@@ -71,7 +72,7 @@ captionpos=b
   \frametitle{A short story about configuration management (CM)}
 
   \begin{itemize}
-  \item<1-> We manage a very diverse environment of UNIX/Linux Systems (Solaris 10/11, AIX, RHEL 5/6/7)
+  \item<1-> We manage a very diverse environment of UNIX/Linux Systems (Solaris 10/11, AIX, RHEL/CentOS 5/6/7)
   \item<2-> Before CM we had \textbf{strict} standards on how to manage these systems
   \item<3-> The problem: \\count(teammembers) == count(standards)
   \item<4-> So configuration management is the solution to all our problems
@@ -95,13 +96,20 @@ captionpos=b
   \frametitle{Problems with our old CM system}
 
   \begin{itemize}
-  \item Systems installed without CM are hard to bring under CM control
-  \item Every system is a special case
-  \item In the beginning every problem was a CM problem
-  \item CFEngine 2 based, no unit tests
-  \item Deployment in stages, but we always had to cross our fingers
-  \item Deployment via manual tagging and checkout, so mistakes happened
-  \item We fixed the same mistake more than once
+  \item <1-> Deployments sucked
+    \begin{itemize}
+    \item <2-> Deployment via manual tagging and checkout, so mistakes happened
+    \item <2-> Deployment in stages, but we always had to cross our fingers
+    \end{itemize}
+  \item <3-> Testing sucked
+    \pause
+    \begin{itemize}
+    \item <4-> No Unittest
+    \item <4-> No acceptance tests
+    \end{itemize}
+  \item <5-> No immediate feedback if things where ok or \textbf{not}
+  \item <6-> Systems installed without CM are hard to bring under CM control
+  \item <7-> Every system was a special case
   \end{itemize}
 \end{frame}
 
@@ -180,60 +188,11 @@ captionpos=b
 \end{frame}
 
 \begin{frame}
-  \frametitle{a word on testing}
-
-  \begin{itemize}
-  \item you must have unit tests for your puppet code: \textbf{rspec-puppet}
-  \item you need to test everything to get most out of the build
-    pipeline
-  \item we test
-    \begin{itemize}
-    \item interal puppet modules
-    \item hiera data
-    \item puppet configuration
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-  \frametitle{rspec-puppet}
-
-  \begin{itemize}
-  \item Ruby RSpec (unit tests) for puppet
-  \item Every interal module must have rspec tests
-  \end{itemize}
-
-  \begin{lstlisting}
-require 'spec_helper'
-describe 'linuxwochen2014' do
-  let :facts { { :osfamily => 'RedHat' } }
-
-  context 'ensure is set to absent' do
-    let :params { { :ensure => 'absent'} }
-
-    it do
-      should contain_user('toni').with({
-                                         'ensure' => 'absent',
-                                         'uid'    => '4711',
-                                         'gid'    => '100',
-                                      })
-    end
-
-    it { should contain_package('emacs-nox').with_ensure('installed') }
-    it { should contain_package('vim-enhanced').with_ensure('absent') }
-    it { should contain_package('emacs-nox).that_comes_before('Package[vim-enhanced]') }
-  end
-end
-  \end{lstlisting}
-
-\end{frame}
-
-
-\begin{frame}
   \frametitle{GIT}
 
   \begin{itemize}
-  \item One central repository managed with gitolite (access control for git)
+  \item One central repository managed with gitolite (access control
+    for git) for internal modules
   \item 3 main branches
     \begin{itemize}
     \item development
@@ -252,7 +211,7 @@ end
   \item modules/: where r10k stores external (forge, github) modules
   \item site/: site local modules, that we do not want to share
   \item hiera/: our hiera yaml files
-  \item Puppetfile: config file for r10k that specifies which modules we need
+  \item Puppetfile: config file for r10k that specifies which external modules we need
   \end{itemize}
 \end{frame}
 
@@ -279,6 +238,54 @@ end
 
 \end{frame}
 
+\begin{frame}
+  \frametitle{a word on testing}
+
+  \begin{itemize}
+  \item you must have unit tests for your puppet code: \textbf{rspec-puppet}
+  \item you need to test everything to get most out of the build
+    pipeline
+  \item we test
+    \begin{itemize}
+    \item interal puppet modules
+    \item hiera data
+    \item puppet configuration
+    \item all internal modules are required to have rspec tests
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{rspec-puppet}
+
+  \begin{itemize}
+  \item Ruby RSpec (unit tests) for puppet
+  \end{itemize}
+
+  \begin{lstlisting}
+require 'spec_helper'
+describe 'linuxwochen2014' do
+  let :facts { { :osfamily => 'RedHat' } }
+
+  context 'ensure is set to absent' do
+    let :params { { :ensure => 'absent'} }
+
+    it do
+      should contain_user('toni').with({
+                                         'ensure' => 'absent',
+                                         'uid'    => '4711',
+                                         'gid'    => '100',
+                                      })
+    end
+
+    it { should contain_package('emacs-nox').with_ensure('installed') }
+    it { should contain_package('vim-enhanced').with_ensure('absent') }
+    it { should contain_package('emacs-nox).that_comes_before('Package[vim-enhanced]') }
+  end
+end
+  \end{lstlisting}
+
+\end{frame}
 
 \begin{frame}
   \center{\huge DEMO}
