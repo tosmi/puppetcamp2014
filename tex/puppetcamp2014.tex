@@ -206,10 +206,22 @@ captionpos=b
   \frametitle{GIT repository layout}
 
   \begin{itemize}
-  \item modules/: where r10k stores external (forge, github) modules
-  \item site/: site local modules, that we do not want to share
-  \item hiera/: our hiera yaml files
-  \item Puppetfile: config file for r10k that specifies which external modules we need
+  \item \texttt{modules/}:
+    \begin{itemize}
+    \item where r10k stores external (forge, github) modules
+    \end{itemize}
+  \item \texttt{site/}:
+    \begin{itemize}
+    \item site local modules, that we do not want to share
+    \end{itemize}
+  \item \texttt{hiera/}:
+    \begin{itemize}
+    \item our hiera yaml files
+    \end{itemize}
+  \item \texttt{Puppetfile}:
+    \begin{itemize}
+    \item config file for r10k that specifies which external modules we need
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
