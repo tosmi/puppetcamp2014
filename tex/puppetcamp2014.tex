@@ -277,7 +277,7 @@ mod 'concat',
 
   \begin{itemize}
   \item you must have unit tests for your puppet code: \textbf{rspec-puppet}
-  \item for acceptance tests there's puppetlabs/beaker
+  \item for acceptance tests there's \textbf{puppetlabs/beaker}
   \item you need to test everything to get most out of the build
     pipeline
   \item we test
@@ -291,7 +291,7 @@ mod 'concat',
 \end{frame}
 
 \begin{frame}[fragile,fragile]
-  \frametitle{rspec-puppet}
+  \frametitle{rspec-puppet example}
 
   samplemodule/manifests/init.pp
 
@@ -314,6 +314,11 @@ describe 'samplemodule', :type => :class do
   end
 end
   \end{lstlisting}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{beaker example}
 
 \end{frame}
 
@@ -341,11 +346,12 @@ end
 \end{frame}
 
 \begin{frame}
-  \frametitle{Things to improve}
+  \frametitle{Things we need to improve}
 
   \begin{itemize}
-  \item We need more test Systems (Centos/RHEL/Solaris)
+  \item We need more test Systems (CentOS/RHEL/Solaris)
   \item We need more acceptance tests
+  \item Once again use stages in production
   \item Puppetlabs should package beaker as a rpm/deb whatever, gems
     suck in production
   \end{itemize}
