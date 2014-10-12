@@ -138,6 +138,21 @@ captionpos=b
 \end{frame}
 
 \begin{frame}
+  \frametitle{Why are we using continuous delivery}
+
+  \begin{itemize}
+  \item<1-> When you automate your deployment,
+    \begin{itemize}
+    \item<2->less mistakes will happen
+    \item<3-> the same mistake will not happen twice
+    \item<4-> you need to test everything
+    \item<5->you deploy more often
+    \end{itemize}
+  \item<6-> The more you deploy, the more confident you get in you deployment
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
   \begin{figure}[ht]
     \centering
       \includegraphics[height=7.5cm,width=6cm]{../pics/cd_book}
@@ -159,8 +174,8 @@ captionpos=b
   \item It's purpose is to execute and monitor jobs
   \item Jobs are shell scripts or any other thing that's executable
     and returns 0 on success
-  \item You can link jobs together, thats our pipeline
   \item Many plugins available to extend Jenkins (e.g. git, build-pipeline, monitor)
+  \item You can \textbf{link jobs} together, thats our \textbf{pipeline}
   \end{itemize}
 
 \end{frame}
@@ -190,8 +205,8 @@ captionpos=b
 
   \begin{itemize}
   \item \textbf{git push} triggers the deployment pipeline
-  \item One central repository managed with gitolite (access control
-    for git) for internal modules
+  \item one central repository for internal modules
+  \item gitolite for access control
   \item 3 main branches
     \begin{itemize}
     \item development
@@ -349,11 +364,30 @@ end
   \frametitle{Things we need to improve}
 
   \begin{itemize}
-  \item We need more test Systems (CentOS/RHEL/Solaris)
+  \item We need more test Systems (CentOS/RHEL/Solaris/AIX?)
   \item We need more acceptance tests
   \item Once again use stages in production
   \item Puppetlabs should package beaker as a rpm/deb whatever, gems
     suck in production
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Summary}
+
+  \begin{itemize}
+  \item<1-> Continuous Delivery is implemented via a deployment pipeline
+  \item<2-> Within the pipeline \textbf{everything} is automated
+  \item<3-> When everything is automated you need to test everything
+  \item<4-> Tools we are using to implement a deployment pipeline
+    \begin{itemize}
+    \item Jenkins (CI)
+    \item GIT
+    \item Gitolite
+    \item r10k
+    \item rspec-puppet
+    \item puppetlabs/beaker
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
