@@ -238,6 +238,10 @@ captionpos=b
     \begin{itemize}
     \item config file for r10k that specifies which external modules we need
     \end{itemize}
+  \item \texttt{Vagrantfile}:
+    \begin{itemize}
+    \item To boot a development puppet environment on your local workstation
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -332,8 +336,18 @@ end
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}[fragile]
   \frametitle{beaker example}
+
+\begin{lstlisting}
+require 'spec_helper_acceptance'
+
+describe 'profiles::ossbase class' do
+  it 'should work with no errors' do
+    apply_manifest('include profiles::ossbase', :catch_failures => true)
+  end
+end
+\end{lstlisting}
 
 \end{frame}
 
@@ -356,6 +370,7 @@ end
     \item \texttt{git clone https://github.com/tosmi/puppetcamp2014.git}
     \item \texttt{cd puppetcamp2014}
     \item \texttt{vagrant up}
+    \item \texttt{vagrant ssh}
     \end{itemize}
   \end{itemize}
 \end{frame}
