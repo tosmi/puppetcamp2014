@@ -59,7 +59,7 @@ captionpos=b
   \frametitle{Agenda}
 
   \begin{itemize}
-  \item A short story about configuration managment
+  \item A short story about configuration management
   \item What is continuous delivery
   \item Tools used to achieve continuous delivery
   \item DEMO
@@ -72,10 +72,10 @@ captionpos=b
   \frametitle{A short story about configuration management (CM)}
 
   \begin{itemize}
-  \item<1-> We manage a very diverse environment of UNIX/Linux Systems (Solaris 10/11 sparc/i386, AIX, RHEL/CentOS 5/6/7)
+  \item<1-> We manage a very diverse environment of UNIX/Linux Systems (Solaris 10/11 SPARC/i386, AIX, RHEL/CentOS 5/6/7)
   \item<2-> We've got around 1000 nodes in total
   \item<3-> Before CM we had \textbf{strict} standards on how to manage these systems
-  \item<4-> The problem: \\count(teammembers) == count(standards)
+  \item<4-> The problem: \\count(team members) == count(standards)
   \item<5-> So configuration management is the solution to all our problems
   \end{itemize}
 
@@ -105,17 +105,17 @@ captionpos=b
   \item <3-> Testing sucked
     \pause
     \begin{itemize}
-    \item <4-> No Unittest
+    \item <4-> No Unittests
     \item <4-> No acceptance tests
     \end{itemize}
-  \item <5-> No immediate feedback if things where ok or \textbf{not}
+  \item <5-> No immediate feedback if things where OK or \textbf{not}
   \item <6-> Systems installed without CM are hard to bring under CM control
   \item <7-> Every system was a special case
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \center{\huge{So whats our solution?}}
+  \center{\huge{So what's our solution?}}
 \end{frame}
 
 
@@ -143,12 +143,11 @@ captionpos=b
   \begin{itemize}
   \item<1-> When you automate your deployment,
     \begin{itemize}
-    \item<2->less mistakes will happen
-    \item<3-> the same mistake will not happen twice
-    \item<4-> you need to test everything
-    \item<5->you deploy more often
+    \item<2-> less mistakes will happen and the same mistake will not happen twice
+    \item<3-> less mistakes means less stress when deploying
+    \item<4-> less stress means you are going to deploy more often
+    \item<5-> more deployments means a more flexible environment
     \end{itemize}
-  \item<6-> The more you deploy, the more confident you get in you deployment
   \end{itemize}
 \end{frame}
 
@@ -302,7 +301,7 @@ mod 'concat',
     pipeline
   \item we test
     \begin{itemize}
-    \item interal puppet modules
+    \item internal puppet modules
     \item hiera data
     \item puppet configuration
     \end{itemize}
@@ -377,15 +376,23 @@ end
 \end{frame}
 
 \begin{frame}
-  \frametitle{Things we need to improve}
+  \frametitle{Things we have to improve}
 
   \begin{itemize}
   \item We need more test Systems (CentOS/RHEL/Solaris/AIX?)
   \item We need more acceptance tests
   \item Once again use stages in production
+  \item Our documentation
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Things puppetlabs should improve }
+  \begin{itemize}
   \item Puppetlabs should package beaker as a rpm/deb whatever, gems
     suck in production
   \end{itemize}
+
 \end{frame}
 
 \begin{frame}
@@ -395,14 +402,15 @@ end
   \item<1-> Continuous Delivery is implemented via a deployment pipeline
   \item<2-> Within the pipeline \textbf{everything} is automated
   \item<3-> When everything is automated you need to test everything
-  \item<4-> Tools we are using to implement a deployment pipeline
+  \item<4-> When everything is automated and well tested deploying becomes easy
+  \item<5-> Tools we are using to implement a deployment pipeline
     \begin{itemize}
-    \item Jenkins (CI)
-    \item GIT
-    \item Gitolite
-    \item r10k
-    \item rspec-puppet
-    \item puppetlabs/beaker
+    \item Jenkins: to execute jobs
+    \item GIT: version control
+    \item Gitolite: access control and authorization for GIT
+    \item r10k: install puppet modules / create puppet environments from branches
+    \item rspec-puppet: unittests for puppet
+    \item puppetlabs/beaker: acceptance tests for puppet
     \end{itemize}
   \end{itemize}
 \end{frame}
