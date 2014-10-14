@@ -204,17 +204,17 @@ captionpos=b
   \frametitle{GIT}
 
   \begin{itemize}
-  \item \textbf{git push} triggers the deployment pipeline
-  \item one central repository for internal modules
-  \item gitolite for access control
-  \item 3 main branches
+  \item<1-> \textbf{git push} triggers the deployment pipeline
+  \item<2-> one central repository for internal modules
+  \item<2-> gitolite for access control
+  \item<2-> 3 main branches
     \begin{itemize}
     \item development
     \item testing
     \item production
     \end{itemize}
-  \item feature branches for new site local modules
-  \item hiera data is in the same repository
+  \item<2-> feature branches for new site local modules
+  \item<2-> hiera data is in the same repository
   \end{itemize}
 \end{frame}
 
@@ -262,6 +262,7 @@ captionpos=b
   \begin{itemize}
   \item a tool to deploy puppet environments and modules
   \item every git branch gets deployed to a corresponding puppet environment
+  \item it also downloads and installs modules from puppetforge or github
   \item in the current version (1.3.2) dependencies have to be managed
     manually
   \end{itemize}
